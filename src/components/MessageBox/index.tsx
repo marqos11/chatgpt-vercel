@@ -37,9 +37,9 @@ const MessageItem: FC<{
 
   return (
     <div
-      className={`msg-fade-in flex items-start ${
-        index === 0 ? '' : 'mt-2'
-      } ${message.role === 'user' ? 'flex-row-reverse ml-2' : 'mr-2'}`}
+      className={`msg-fade-in flex items-start ${index === 0 ? '' : 'mt-2'} ${
+        message.role === 'user' ? 'flex-row-reverse ml-2' : 'mr-2'
+      }`}
     >
       <div className="overflow-hidden flex flex-col-reverse flex-1">
         {message.midjourneyMessage &&
