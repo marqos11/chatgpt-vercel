@@ -38,7 +38,7 @@ const MessageItem: FC<{
   return (
     <div
       className={`msg-fade-in flex items-start ${
-        index === 0 ? '' : 'mt-[24px]'
+        index === 0 ? '' : 'mt-2'
       } ${message.role === 'user' ? 'flex-row-reverse ml-2' : 'mr-2'}`}
     >
       <div className="overflow-hidden flex flex-col-reverse flex-1">
@@ -63,8 +63,8 @@ const MessageItem: FC<{
               : markdown.render(message.content),
           }}
           style={{ fontSize: '98%' }}
-          className={`prose max-w-full message-box shadow-sm p-4 ${
-            message.role === 'user' ? 'bg-gradient text-white' : 'bg-[#ebeced]'
+          className={`prose max-w-full message-box shadow-sm p-2 leading-tight ${
+            message.role === 'user' ? 'bg-white text-black' : 'bg-[#ebeced]'
           } ${
             mode === 'image' ? 'img-no-margin' : ''
           } break-words rounded-[16px]`}
