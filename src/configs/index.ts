@@ -3,21 +3,16 @@ import { Conversation, GlobalConfig } from '@interfaces';
 export const globalConfigLocalKey = 'GLOBAL_CONFIG_LOCAL';
 export const localConversationKey = 'LOCAL_CONVERSATION';
 
-// From https://platform.openai.com/docs/models/model-endpoint-compatibility
+// Updated model list
 export const supportedModels = [
-  'gpt-4',
-  'gpt-4-0613',
-  'gpt-4-32k',
-  'gpt-4-32k-0613',
-  'gpt-3.5-turbo',
-  'gpt-3.5-turbo-0613',
-  'gpt-3.5-turbo-16k',
-  'gpt-3.5-turbo-16k-0613',
+  'grok-4.1-fast-reasoning',
+  'gemini-2.5-flash',
 ] as const;
 
 export type SupportedModel = (typeof supportedModels)[number];
 
-export const defaultModel: SupportedModel = 'gpt-3.5-turbo';
+// Updated default model to one of the new supported models
+export const defaultModel: SupportedModel = 'grok-4.1-fast-reasoning';
 
 export const supportedImageModels = [
   'DALL-E',
