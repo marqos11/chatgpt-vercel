@@ -2,6 +2,48 @@
   visibility: visible;
 }
 
+/* --- COMPACT TEXT STYLING --- */
+
+/* Tighten paragraphs */
+.message-box p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.5; /* Standard compact line height */
+}
+
+/* Tighten lists */
+.message-box ul,
+.message-box ol {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-left: 1.2em; /* Slightly tighter indentation */
+}
+
+/* Tighten list items */
+.message-box li {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  line-height: 1.5;
+}
+
+/* Tighten headings inside messages */
+.message-box h1,
+.message-box h2,
+.message-box h3,
+.message-box h4 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+/* Tighten code blocks */
+.message-box pre {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* --- EXISTING FIXES (Divider & Tables) --- */
+
 /* Customize the markdown divider line */
 .message-box hr {
   margin-top: 0.7em;
@@ -15,15 +57,15 @@
   display: block;             /* Allows the table to respect height/width overflow */
   overflow-x: auto;           /* Enable horizontal scrolling for wide tables */
   overflow-y: auto;           /* Enable vertical scrolling for long tables */
-  max-height: 60vh;           /* Limit height to 60% of viewport (adjust as needed) */
+  max-height: 60vh;           /* Limit height to 60% of viewport */
   border-collapse: collapse;
   min-width: 100%;
-  margin-top: 0.7em;
-  margin-bottom: 0.7em;
+  margin-top: 0.5em;          /* Tighter margin for tables too */
+  margin-bottom: 0.5em;
   background-color: #fff7ed;  /* Light orange background */
 }
 
-/* Optional: Smooth scrollbar for the table */
+/* Smooth scrollbar for the table */
 .message-box table::-webkit-scrollbar {
   height: 8px;
   width: 8px;
@@ -36,15 +78,13 @@
 .message-box th,
 .message-box td {
   border: 1px solid #d1d5db;
-  padding: 0.5em;
-  white-space: nowrap; /* Forces wide content to trigger horizontal scroll instead of wrapping */
+  padding: 0.4em 0.6em;       /* Slightly more compact cell padding */
+  white-space: nowrap;        /* Forces wide content to scroll horizontally */
 }
-
-/* Allow text wrapping for very long descriptions if preferred, remove 'white-space: nowrap' above if this feels too stiff */
 
 .message-box th {
   background-color: #ffedd5;
-  position: sticky; /* Keeps the header visible while scrolling down */
+  position: sticky;           /* Keeps the header visible while scrolling */
   top: 0;
   z-index: 10;
 }
