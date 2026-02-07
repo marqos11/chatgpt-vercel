@@ -412,7 +412,7 @@ const Content: FC<ContentProps> = ({ setActiveSetting }) => {
         setShowPrompt={setShowPrompt}
         setText={setText}
       />
-      <div className="flex-1 overflow-auto common-scrollbar p-5 pb-0">
+      <div className="flex-1 overflow-auto common-scrollbar p-0 pb-0">
         <MessageBox
           streamMessage={streamMessage}
           messages={messages}
