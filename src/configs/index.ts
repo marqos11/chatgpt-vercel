@@ -19,7 +19,6 @@ export const supportedModels = [
   'gpt-5-nano',
   'gpt-5.2',
   'gpt-5.2-chat-latest',
-  'grok-4-1-fast-reasoning',
   'grok-4.1-fast-reasoning',
   'grok-4.1-thinking',
   'openrouter:x-ai/grok-4.1-fast',
