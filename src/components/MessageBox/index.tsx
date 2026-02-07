@@ -23,9 +23,11 @@ const MessageItem: FC<{
     messageId: string,
     prompt: string
   ) => void;
+  onReload?: (index: number) => void;
   mode?: ConversationMode;
   index?: number;
-}> = ({ message, onOperationClick, mode, index }) => {
+  loading?: boolean;
+}> = ({ message, onOperationClick, onReload, mode, index, loading }) => {
   const { i18n, isMobile } = useContext(GlobalContext);
   const isExpired = message.expiredAt && message.expiredAt <= Date.now();
   const createdAt = getRelativeTime(message.createdAt, true);
@@ -38,6 +40,17 @@ const MessageItem: FC<{
   return (
     <div className="msg-fade-in flex items-start w-full">
       <div className="overflow-hidden flex flex-col-reverse flex-1 w-full">
+        {/* Reload Button - Appears at the bottom due to flex-col-reverse */}
+        {message.role === 'assistant' && !loading && onReload ? (
+          <div className="flex justify-end w-full mt-2 pr-2">
+            <i
+              className="ri-refresh-line text-gray-400 hover:text-gray-600 cursor-pointer transition-colors"
+              title="Reload response"
+              onClick={() => onReload(index)}
+            />
+          </div>
+        ) : null}
+
         {message.midjourneyMessage &&
         hasUpscaleOrVariation(message.midjourneyMessage) ? (
           <MidjourneyOperations
@@ -105,7 +118,15 @@ const MessageBox: FC<{
     messageId: string,
     prompt: string
   ) => void;
-}> = ({ streamMessage, messages, mode, loading, onOperationClick }) => {
+  onReload?: (index: number) => void;
+}> = ({
+  streamMessage,
+  messages,
+  mode,
+  loading,
+  onOperationClick,
+  onReload,
+}) => {
   const { i18n } = useContext(GlobalContext);
 
   useCopyCode(i18n.success_copy);
@@ -154,8 +175,10 @@ const MessageBox: FC<{
           key={index}
           index={index}
           mode={mode}
+          loading={loading}
           message={message}
           onOperationClick={loading ? () => null : onOperationClick}
+          onReload={loading ? undefined : onReload}
         />
       ))}
       {streamMessage ? (
