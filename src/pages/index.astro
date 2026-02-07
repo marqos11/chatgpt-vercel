@@ -4,7 +4,6 @@ import type { Lang } from '@interfaces';
 import Layout from '@/layouts/Layout.astro';
 import 'katex/dist/katex.min.css';
 import 'highlight.js/styles/atom-one-dark.css';
-
 // read lang from env/process.env
 const lang: Lang = import.meta.env.LANGUAGE || process.env.LANGUAGE || 'en';
 // read inVercel from process.env
@@ -19,9 +18,9 @@ const inVercel = !!process.env.VERCEL;
 
 <style is:global>
   .container-default {
-    max-width: 1200px;
-    width: 80vw;
-    height: 80vh;
+    max-width: none; /* Removed max-width limit */
+    width: 100vw;    /* Full viewport width */
+    height: 100vh;   /* Full viewport height */
   }
 
   .container-loose {
