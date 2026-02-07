@@ -39,7 +39,7 @@ const MessageItem: FC<{
     <div
       className={`msg-fade-in flex items-start ${
         index === 0 ? '' : 'mt-[24px]'
-      } ${message.role === 'user' ? 'flex-row-reverse ml-16' : 'mr-6'}`}
+      } ${message.role === 'user' ? 'flex-row-reverse ml-2' : 'mr-2'}`}
     >
       {message.role === 'assistant' ? (
         <SystemAvatar className="mt-[38px] mr-2" role={message.imageModel} />
@@ -65,7 +65,7 @@ const MessageItem: FC<{
               ? i18n.status_image_expired
               : markdown.render(message.content),
           }}
-          className={`prose message-box shadow-sm p-4 ${
+          className={`prose max-w-full message-box shadow-sm p-4 ${
             message.role === 'user' ? 'bg-gradient text-white' : 'bg-[#ebeced]'
           } ${
             mode === 'image' ? 'img-no-margin' : ''
