@@ -224,9 +224,8 @@ const Main: FC<{ lang: Lang; inVercel: boolean }> = ({ lang, inVercel }) => {
         }}
       >
         <div
-          className={`w-[100%] h-[100%] flex overflow-hidden ${
-            isMobile ? '' : 'rounded-2xl'
-          }`}
+          // Removed rounded-2xl to ensure corners are square in fullscreen
+          className={`w-[100%] h-[100%] flex overflow-hidden`}
           style={{ boxShadow: '0 20px 68px rgba(0, 0, 0, 0.15)' }}
         >
           {isMobile ? (
