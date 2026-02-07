@@ -1,13 +1,3 @@
 .message-box:hover + .message-box-hover {
   visibility: visible;
 }
-
-/* Change code block background to light orange */
-.message-box pre,
-.message-box pre code,
-.message-box code,
-.message-box .hljs {
-  background-color: #ffedd5 !important;
-  color: black !important;
-  text-shadow: none !important;
-}
