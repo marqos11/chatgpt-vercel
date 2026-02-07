@@ -9,7 +9,7 @@ export const supportedModels = [
   'claude-opus-4.5',
   'claude-sonnet-4-5-20250929',
   'claude-sonnet-4.5',
-  'gemini-2.5-flash',
+  'gemini-flash',
   'gemini-flash-latest',
   'gemini-3-flash-puter',
   'gemini-3-pro-preview',
