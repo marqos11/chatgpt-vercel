@@ -84,6 +84,17 @@ const { title } = Astro.props;
   .prose pre:hover .copy-code {
     display: block;
   }
+  /* Reduce header spacing in responses */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
   /* image without margin */
   .prose.img-no-margin img {
     margin: 0;
