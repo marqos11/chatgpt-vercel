@@ -10,21 +10,41 @@
   border-bottom: none;
 }
 
-/* Customize markdown tables */
+/* Customize markdown tables for scrolling */
 .message-box table {
+  display: block;             /* Allows the table to respect height/width overflow */
+  overflow-x: auto;           /* Enable horizontal scrolling for wide tables */
+  overflow-y: auto;           /* Enable vertical scrolling for long tables */
+  max-height: 60vh;           /* Limit height to 60% of viewport (adjust as needed) */
   border-collapse: collapse;
   min-width: 100%;
   margin-top: 0.7em;
   margin-bottom: 0.7em;
-  background-color: #fff7ed; /* Light orange background (Orange-50) */
+  background-color: #fff7ed;  /* Light orange background */
+}
+
+/* Optional: Smooth scrollbar for the table */
+.message-box table::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.message-box table::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 4px;
 }
 
 .message-box th,
 .message-box td {
-  border: 1px solid #d1d5db; /* Visible gray border */
+  border: 1px solid #d1d5db;
   padding: 0.5em;
+  white-space: nowrap; /* Forces wide content to trigger horizontal scroll instead of wrapping */
 }
 
+/* Allow text wrapping for very long descriptions if preferred, remove 'white-space: nowrap' above if this feels too stiff */
+
 .message-box th {
-  background-color: #ffedd5; /* Slightly darker orange for headers (Orange-100) */
+  background-color: #ffedd5;
+  position: sticky; /* Keeps the header visible while scrolling down */
+  top: 0;
+  z-index: 10;
 }
