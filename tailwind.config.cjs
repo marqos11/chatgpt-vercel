@@ -5,5 +5,7 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwindcss/plugin')(function({addBase}){addBase({'.prose':{marginBottom:'0',paddingBottom:'0'},'.prose > :last-child':{marginBottom:'0'}})}),require('@tailwindcss/typography')],
 };
