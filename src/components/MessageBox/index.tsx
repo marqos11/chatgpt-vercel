@@ -61,9 +61,7 @@ const MessageItem: FC<{
           style={{ fontSize: '98%' }}
           className={`prose max-w-full message-box shadow-none p-2 leading-tight w-full rounded-none ${
             message.role === 'user' ? 'bg-white text-black' : 'bg-[#ebeced]'
-          } ${
-            mode === 'image' ? 'img-no-margin' : ''
-          } break-words`}
+          } ${mode === 'image' ? 'img-no-margin' : ''} break-words`}
         />
         <div
           className={`message-box-hover hover:visible flex justify-between items-center ${
