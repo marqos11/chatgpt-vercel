@@ -71,9 +71,20 @@ const Content: FC<ContentProps> = ({ setActiveSetting }) => {
     }));
   };
 
-  const generateText = async (allMessages: Message[]) => {
+  const sendTextChatMessages = async (content: string) => {
     const current = currentId;
+    // temp stream message
     let tempMessage = '';
+    const input: Message[] = [
+      {
+        role: 'user',
+        content,
+        createdAt: Date.now(),
+      },
+    ];
+    const allMessages: Message[] = messages.concat(input);
+    updateMessages(allMessages);
+    setText('');
     setLoadingMap((map) => ({
       ...map,
       [current]: true,
@@ -88,7 +99,7 @@ const Content: FC<ContentProps> = ({ setActiveSetting }) => {
           model: configs.model,
           messages: configs.continuous
             ? allMessages.slice(-1 * (configs.messagesCount ?? 4) - 1)
-            : allMessages,
+            : input,
           temperature: configs.temperature ?? 1,
           password: configs.password,
         }),
@@ -167,28 +178,6 @@ const Content: FC<ContentProps> = ({ setActiveSetting }) => {
         [current]: false,
       }));
     }
-  };
-
-  const sendTextChatMessages = async (content: string) => {
-    const input: Message[] = [
-      {
-        role: 'user',
-        content,
-        createdAt: Date.now(),
-      },
-    ];
-    const allMessages: Message[] = messages.concat(input);
-    updateMessages(allMessages);
-    setText('');
-    await generateText(allMessages);
-  };
-
-  const handleReload = async (index: number) => {
-    if (mode === 'image') return;
-    // Keep messages up to the one before the reloaded message (usually the user prompt)
-    const newMessages = messages.slice(0, index);
-    updateMessages(newMessages);
-    await generateText(newMessages);
   };
 
   const stopGenerate = () => {
@@ -429,7 +418,6 @@ const Content: FC<ContentProps> = ({ setActiveSetting }) => {
           messages={messages}
           mode={mode}
           loading={loading}
-          onReload={handleReload}
           onOperationClick={(type, customId, messageId, prompt) => {
             const { index } = getHashFromCustomId(type, customId);
             if (typeof index === 'number') {
