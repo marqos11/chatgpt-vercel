@@ -3,15 +3,31 @@ import { Conversation, GlobalConfig } from '@interfaces';
 export const globalConfigLocalKey = 'GLOBAL_CONFIG_LOCAL';
 export const localConversationKey = 'LOCAL_CONVERSATION';
 
-// Updated model list
+// Updated model list per request
 export const supportedModels = [
-  'grok-4.1-fast-reasoning',
+  'claude-opus-4-5-20251101',
+  'claude-opus-4.5',
+  'claude-sonnet-4-5-20250929',
+  'claude-sonnet-4.5',
   'gemini-2.5-flash',
+  'gemini-2.5-flashy',
+  'gemini-3-flash-preview',
+  'gemini-3-flash-puter',
+  'gemini-3-pro-preview',
+  'gemini-3.0-pro',
+  'gemini-3.0-promax',
+  'gpt-5-nano',
+  'gpt-5.2',
+  'gpt-5.2-chat-latest',
+  'grok-4-1-fast-reasoning',
+  'grok-4.1-fast-reasoning',
+  'grok-4.1-thinking',
+  'openrouter:x-ai/grok-4.1-fast',
 ] as const;
 
 export type SupportedModel = (typeof supportedModels)[number];
 
-// Updated default model to one of the new supported models
+// Keeping grok-4.1-fast-reasoning as default since it is in the list
 export const defaultModel: SupportedModel = 'grok-4.1-fast-reasoning';
 
 export const supportedImageModels = [
