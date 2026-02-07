@@ -41,10 +41,7 @@ const MessageItem: FC<{
         index === 0 ? '' : 'mt-[24px]'
       } ${message.role === 'user' ? 'flex-row-reverse ml-2' : 'mr-2'}`}
     >
-      {message.role === 'assistant' ? (
-        <SystemAvatar className="mt-[38px] mr-2" role={message.imageModel} />
-      ) : null}
-      <div className="overflow-hidden flex flex-col-reverse">
+      <div className="overflow-hidden flex flex-col-reverse flex-1">
         {message.midjourneyMessage &&
         hasUpscaleOrVariation(message.midjourneyMessage) ? (
           <MidjourneyOperations
@@ -65,6 +62,7 @@ const MessageItem: FC<{
               ? i18n.status_image_expired
               : markdown.render(message.content),
           }}
+          style={{ fontSize: '98%' }}
           className={`prose max-w-full message-box shadow-sm p-4 ${
             message.role === 'user' ? 'bg-gradient text-white' : 'bg-[#ebeced]'
           } ${
