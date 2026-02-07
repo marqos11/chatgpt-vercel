@@ -36,12 +36,8 @@ const MessageItem: FC<{
   };
 
   return (
-    <div
-      className={`msg-fade-in flex items-start ${index === 0 ? '' : 'mt-2'} ${
-        message.role === 'user' ? 'flex-row-reverse ml-2' : 'mr-2'
-      }`}
-    >
-      <div className="overflow-hidden flex flex-col-reverse flex-1">
+    <div className="msg-fade-in flex items-start w-full">
+      <div className="overflow-hidden flex flex-col-reverse flex-1 w-full">
         {message.midjourneyMessage &&
         hasUpscaleOrVariation(message.midjourneyMessage) ? (
           <MidjourneyOperations
@@ -63,11 +59,11 @@ const MessageItem: FC<{
               : markdown.render(message.content),
           }}
           style={{ fontSize: '98%' }}
-          className={`prose max-w-full message-box shadow-sm p-2 leading-tight ${
+          className={`prose max-w-full message-box shadow-none p-2 leading-tight w-full rounded-none ${
             message.role === 'user' ? 'bg-white text-black' : 'bg-[#ebeced]'
           } ${
             mode === 'image' ? 'img-no-margin' : ''
-          } break-words rounded-[16px]`}
+          } break-words`}
         />
         <div
           className={`message-box-hover hover:visible flex justify-between items-center ${
