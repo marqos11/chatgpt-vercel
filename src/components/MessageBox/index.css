@@ -2,9 +2,10 @@
   visibility: visible;
 }
 
-/* Target the divider line inside the message box */
+/* Customize the markdown divider line */
 .message-box hr {
-  margin-top: 1em;    /* Default is usually around 3em, this makes it much smaller */
-  margin-bottom: 1em; /* Adjust this number to taste (e.g., 0.5em for even tighter) */
-  border-color: #e5e7eb; /* Optional: ensures the line is a subtle gray */
+  margin-top: 0.7em;               /* Minimize gap above */
+  margin-bottom: 0.7em;            /* Minimize gap below */
+  border-top: 2px solid #d1d5db; /* Make it thicker (2px) and visible gray */
+  border-bottom: none;           /* Remove default bottom border if any */
 }
