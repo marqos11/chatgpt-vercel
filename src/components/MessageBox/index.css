@@ -4,8 +4,27 @@
 
 /* Customize the markdown divider line */
 .message-box hr {
-  margin-top: 0.7em;               /* Minimize gap above */
-  margin-bottom: 0.7em;            /* Minimize gap below */
-  border-top: 2px solid #d1d5db; /* Make it thicker (2px) and visible gray */
-  border-bottom: none;           /* Remove default bottom border if any */
+  margin-top: 0.7em;
+  margin-bottom: 0.7em;
+  border-top: 2px solid #d1d5db;
+  border-bottom: none;
+}
+
+/* Customize markdown tables */
+.message-box table {
+  border-collapse: collapse;
+  min-width: 100%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: #fff7ed; /* Light orange background (Orange-50) */
+}
+
+.message-box th,
+.message-box td {
+  border: 1px solid #d1d5db; /* Visible gray border */
+  padding: 0.5em;
+}
+
+.message-box th {
+  background-color: #ffedd5; /* Slightly darker orange for headers (Orange-100) */
 }
