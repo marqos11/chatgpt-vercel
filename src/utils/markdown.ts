@@ -28,7 +28,7 @@ const downgradeHeadersPlugin = (md: MarkdownIt) => {
         const originalTag = token.tag;
 
         /* eslint-disable no-param-reassign */
-        // Map tags down to smaller sizes to prevent huge defaults
+        // Map tags down to smaller sizes
         if (originalTag === 'h1') token.tag = 'h3';
         else if (originalTag === 'h2') token.tag = 'h4';
         else if (originalTag === 'h3') token.tag = 'h5';
@@ -37,19 +37,22 @@ const downgradeHeadersPlugin = (md: MarkdownIt) => {
         // Apply DISTINCT styles based on the ORIGINAL tag level
         if (token.type === 'heading_open') {
           const styleIndex = token.attrIndex('style');
-          
+
           let customStyle = '';
 
           // Tiered sizing logic
           if (originalTag === 'h1') {
-             // Main Title: Slightly larger, medium weight
-             customStyle = 'font-weight: 600; font-size: 1.25em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+            // Main Title: Slightly larger, medium weight
+            customStyle =
+              'font-weight: 600; font-size: 1.25em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
           } else if (originalTag === 'h2') {
-             // Section: Just a bit larger than text
-             customStyle = 'font-weight: 600; font-size: 1.1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+            // Section: Just a bit larger than text
+            customStyle =
+              'font-weight: 600; font-size: 1.1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
           } else {
-             // H3 and below: Same size as text (1em), just bold
-             customStyle = 'font-weight: 600; font-size: 1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+            // H3 and below: Same size as text (1em), just bold
+            customStyle =
+              'font-weight: 600; font-size: 1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
           }
 
           if (styleIndex < 0) {
