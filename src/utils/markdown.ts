@@ -44,8 +44,9 @@ const downgradeHeadersPlugin = (md: MarkdownIt) => {
           if (styleIndex < 0) {
             token.attrPush(['style', customStyle]);
           } else {
-            // Use template literal to fix 'prefer-template' error
-            token.attrs[styleIndex][1] = `${token.attrs[styleIndex][1]}; ${customStyle}`;
+            // Extracted to variable to fix Prettier formatting error
+            const attr = token.attrs[styleIndex];
+            attr[1] = `${attr[1]}; ${customStyle}`;
           }
         }
         /* eslint-enable no-param-reassign */
