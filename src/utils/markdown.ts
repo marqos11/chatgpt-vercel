@@ -3,16 +3,11 @@ import mdHighlight from 'markdown-it-highlightjs';
 import mdKbd from 'markdown-it-kbd';
 
 const preCopyPlugin = (md: MarkdownIt) => {
-  // Override the default renderer for code blocks
   const defaultRender = md.renderer.rules.fence;
   // eslint-disable-next-line no-param-reassign
   md.renderer.rules.fence = (...args) => {
-    // Get the original code block HTML
     const codeBlockHtml = defaultRender(...args);
-
     const copyButtonHtml = `<button class="copy-code w-9 h-9 absolute top-0 right-0"><i class="ri-file-copy-line"></i></button>`;
-
-    // Return the modified HTML
     return codeBlockHtml.replace(
       '<pre>',
       `<pre class="relative">${copyButtonHtml}`
@@ -23,44 +18,31 @@ const preCopyPlugin = (md: MarkdownIt) => {
 const downgradeHeadersPlugin = (md: MarkdownIt) => {
   md.core.ruler.push('downgrade_headers', (state) => {
     state.tokens.forEach((token) => {
-      // Check if the token is a heading
       if (token.type === 'heading_open' || token.type === 'heading_close') {
         const originalTag = token.tag;
 
         /* eslint-disable no-param-reassign */
-        // Map tags down to smaller sizes
+        
+        // 1. HEADER MAPPING (The "H2 to H4" logic)
+        // We shift everything down so H1 isn't huge, and H2 becomes H4
         if (originalTag === 'h1') token.tag = 'h3';
         else if (originalTag === 'h2') token.tag = 'h4';
         else if (originalTag === 'h3') token.tag = 'h5';
         else if (originalTag === 'h4') token.tag = 'h6';
 
-        // Apply DISTINCT styles based on the ORIGINAL tag level
+        // 2. COMPACTING HEADERS
+        // We only inject spacing/line-height. We let the browser/theme handle boldness.
         if (token.type === 'heading_open') {
           const styleIndex = token.attrIndex('style');
-
-          let customStyle = '';
-
-          // COMPACT SIZING LOGIC
-          if (originalTag === 'h1') {
-            // Main Title: 500 weight (Medium)
-            customStyle =
-              'font-weight: 500 !important; font-size: 1.25em; line-height: 1.2; margin-top: 0.6em; margin-bottom: 0.2em;';
-          } else if (originalTag === 'h2') {
-            // Section: 400 weight (Regular) - Adjusted back as requested
-            customStyle =
-              'font-weight: 400 !important; font-size: 1.1em; line-height: 1.2; margin-top: 0.6em; margin-bottom: 0.2em;';
-          } else {
-            // H3 and below: 400 weight (Regular) - Adjusted back as requested
-            customStyle =
-              'font-weight: 400 !important; font-size: 1em; line-height: 1.2; margin-top: 0.6em; margin-bottom: 0.2em;';
-          }
+          
+          // Tight margins and line height (No font-weight or font-size overrides)
+          const compactStyle = 'margin-top: 0.6em; margin-bottom: 0.2em; line-height: 1.2;';
 
           if (styleIndex < 0) {
-            token.attrPush(['style', customStyle]);
+            token.attrPush(['style', compactStyle]);
           } else {
-            // Extracted to variable to fix Prettier formatting error
             const attr = token.attrs[styleIndex];
-            attr[1] = `${attr[1]}; ${customStyle}`;
+            attr[1] = `${attr[1]}; ${compactStyle}`;
           }
         }
         /* eslint-enable no-param-reassign */
@@ -117,6 +99,5 @@ export const initMathJax: () => Promise<void> = (callback?: () => void) => {
   });
 };
 
-// async function
 export const renderMaxJax: () => Promise<void> = () =>
   window.MathJax.typesetPromise(document.getElementsByClassName('prose'));
