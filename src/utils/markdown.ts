@@ -41,20 +41,18 @@ const downgradeHeadersPlugin = (md: MarkdownIt) => {
           let customStyle = '';
 
           // COMPACT SIZING LOGIC
-          // Reduced margin-top from 1em -> 0.6em
-          // Reduced margin-bottom from 0.5em -> 0.2em
           if (originalTag === 'h1') {
-            // Main Title: 500 weight (Medium), 1.25em size
+            // Main Title: 500 weight (Medium)
             customStyle =
               'font-weight: 500 !important; font-size: 1.25em; line-height: 1.2; margin-top: 0.6em; margin-bottom: 0.2em;';
           } else if (originalTag === 'h2') {
-            // Section: 250 weight (Thin), 1.1em size
+            // Section: 400 weight (Regular) - Adjusted back as requested
             customStyle =
-              'font-weight: 250 !important; font-size: 1.1em; line-height: 1.2; margin-top: 0.6em; margin-bottom: 0.2em;';
+              'font-weight: 400 !important; font-size: 1.1em; line-height: 1.2; margin-top: 0.6em; margin-bottom: 0.2em;';
           } else {
-            // H3 and below: 250 weight (Thin), 1em size
+            // H3 and below: 400 weight (Regular) - Adjusted back as requested
             customStyle =
-              'font-weight: 250 !important; font-size: 1em; line-height: 1.2; margin-top: 0.6em; margin-bottom: 0.2em;';
+              'font-weight: 400 !important; font-size: 1em; line-height: 1.2; margin-top: 0.6em; margin-bottom: 0.2em;';
           }
 
           if (styleIndex < 0) {
