@@ -40,19 +40,19 @@ const downgradeHeadersPlugin = (md: MarkdownIt) => {
 
           let customStyle = '';
 
-          // Tiered sizing logic
+          // Tiered sizing & weight logic
           if (originalTag === 'h1') {
             // Main Title: 500 weight (Medium), 1.25em size
             customStyle =
-              'font-weight: 500; font-size: 1.25em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+              'font-weight: 500 !important; font-size: 1.25em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
           } else if (originalTag === 'h2') {
-            // Section: 500 weight (Medium), 1.1em size
+            // Section: 400 weight (Regular), 1.1em size
             customStyle =
-              'font-weight: 500; font-size: 1.1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+              'font-weight: 400 !important; font-size: 1.1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
           } else {
-            // H3 and below: 500 weight (Medium), 1em size
+            // H3 and below: 400 weight (Regular), 1em size
             customStyle =
-              'font-weight: 500; font-size: 1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+              'font-weight: 400 !important; font-size: 1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
           }
 
           if (styleIndex < 0) {
