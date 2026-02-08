@@ -46,13 +46,13 @@ const downgradeHeadersPlugin = (md: MarkdownIt) => {
             customStyle =
               'font-weight: 500 !important; font-size: 1.25em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
           } else if (originalTag === 'h2') {
-            // Section: 400 weight (Regular), 1.1em size
+            // Section: 250 weight (Thin), 1.1em size
             customStyle =
-              'font-weight: 400 !important; font-size: 1.1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+              'font-weight: 250 !important; font-size: 1.1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
           } else {
-            // H3 and below: 400 weight (Regular), 1em size
+            // H3 and below: 250 weight (Thin), 1em size
             customStyle =
-              'font-weight: 400 !important; font-size: 1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+              'font-weight: 250 !important; font-size: 1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
           }
 
           if (styleIndex < 0) {
