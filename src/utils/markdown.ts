@@ -20,6 +20,38 @@ const preCopyPlugin = (md: MarkdownIt) => {
   };
 };
 
+// NEW PLUGIN: Forces headers to be smaller and thinner
+const downgradeHeadersPlugin = (md: MarkdownIt) => {
+  md.core.ruler.push('downgrade_headers', (state) => {
+    state.tokens.forEach((token) => {
+      // Check if the token is a heading
+      if (token.type === 'heading_open' || token.type === 'heading_close') {
+        const currentTag = token.tag;
+
+        // Map tags down to smaller sizes
+        if (currentTag === 'h1') token.tag = 'h3';
+        else if (currentTag === 'h2') token.tag = 'h4';
+        else if (currentTag === 'h3') token.tag = 'h5';
+        else if (currentTag === 'h4') token.tag = 'h6';
+        
+        // If it's the opening tag, FORCE inline styles to reduce thickness/size
+        if (token.type === 'heading_open') {
+          const styleIndex = token.attrIndex('style');
+          // font-weight: 500 (Medium) is much thinner than default Bold (700)
+          // font-size: 1.1em is barely larger than normal text
+          const customStyle = 'font-weight: 500; font-size: 1.15em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+
+          if (styleIndex < 0) {
+            token.attrPush(['style', customStyle]);
+          } else {
+            token.attrs[styleIndex][1] = token.attrs[styleIndex][1] + '; ' + customStyle;
+          }
+        }
+      }
+    });
+  });
+};
+
 const markdown = MarkdownIt({
   linkify: true,
   breaks: true,
@@ -28,7 +60,8 @@ const markdown = MarkdownIt({
     inline: true,
   })
   .use(mdKbd)
-  .use(preCopyPlugin);
+  .use(preCopyPlugin)
+  .use(downgradeHeadersPlugin); // Apply the header fix
 
 export default markdown;
 
