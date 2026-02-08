@@ -22,7 +22,7 @@ const downgradeHeadersPlugin = (md: MarkdownIt) => {
         const originalTag = token.tag;
 
         /* eslint-disable no-param-reassign */
-        
+
         // 1. HEADER MAPPING (The "H2 to H4" logic)
         // We shift everything down so H1 isn't huge, and H2 becomes H4
         if (originalTag === 'h1') token.tag = 'h3';
@@ -34,9 +34,10 @@ const downgradeHeadersPlugin = (md: MarkdownIt) => {
         // We only inject spacing/line-height. We let the browser/theme handle boldness.
         if (token.type === 'heading_open') {
           const styleIndex = token.attrIndex('style');
-          
+
           // Tight margins and line height (No font-weight or font-size overrides)
-          const compactStyle = 'margin-top: 0.6em; margin-bottom: 0.2em; line-height: 1.2;';
+          const compactStyle =
+            'margin-top: 0.6em; margin-bottom: 0.2em; line-height: 1.2;';
 
           if (styleIndex < 0) {
             token.attrPush(['style', compactStyle]);
