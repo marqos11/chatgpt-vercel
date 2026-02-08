@@ -8,7 +8,7 @@
 .message-box p {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  line-height: 1.5; /* Standard compact line height */
+  line-height: 1.5;
 }
 
 /* Tighten lists */
@@ -16,7 +16,7 @@
 .message-box ol {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  padding-left: 1.2em; /* Slightly tighter indentation */
+  padding-left: 1.2em;
 }
 
 /* Tighten list items */
@@ -26,11 +26,20 @@
   line-height: 1.5;
 }
 
-/* --- HEADER SIZING FIX --- */
-/* Significantly reduced sizes as requested */
+/* --- HEADER SIZING & THICKNESS FIX --- */
+
+/* We apply a lighter font-weight (500) to the largest headers 
+   so they don't look "thick" compared to smaller bold text.
+*/
 
 .message-box h1,
-.message-box h2,
+.message-box h2 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+  font-weight: 500; /* Reduced from 600/bold to Medium to look thinner */
+}
+
 .message-box h3,
 .message-box h4,
 .message-box h5,
@@ -38,25 +47,22 @@
   margin-top: 1em;
   margin-bottom: 0.5em;
   line-height: 1.3;
-  font-weight: 600; /* Semi-bold instead of heavy bold */
+  font-weight: 600; /* Keep these standard semi-bold */
 }
 
-/* Make h1 small (approx 18px if base is 16px) */
+/* Flatten the sizes significantly so h1/h2 aren't huge */
 .message-box h1 {
-  font-size: 1.125em; 
+  font-size: 1.1em; /* Almost same as text */
 }
 
-/* Make h2 smaller (approx 17px) */
 .message-box h2 {
   font-size: 1.05em; 
 }
 
-/* Make h3 same size as text, just bold */
 .message-box h3 {
   font-size: 1em; 
 }
 
-/* Make h4 same size as text */
 .message-box h4 {
   font-size: 1em; 
 }
@@ -69,7 +75,6 @@
 
 /* --- EXISTING FIXES (Divider & Tables) --- */
 
-/* Customize the markdown divider line */
 .message-box hr {
   margin-top: 0.7em;
   margin-bottom: 0.7em;
@@ -77,20 +82,18 @@
   border-bottom: none;
 }
 
-/* Customize markdown tables for scrolling */
 .message-box table {
-  display: block;             /* Allows the table to respect height/width overflow */
-  overflow-x: auto;           /* Enable horizontal scrolling for wide tables */
-  overflow-y: auto;           /* Enable vertical scrolling for long tables */
-  max-height: 60vh;           /* Limit height to 60% of viewport */
+  display: block;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 60vh;
   border-collapse: collapse;
   min-width: 100%;
-  margin-top: 0.5em;          /* Tighter margin for tables too */
+  margin-top: 0.5em;
   margin-bottom: 0.5em;
-  background-color: #fff7ed;  /* Light orange background */
+  background-color: #fff7ed;
 }
 
-/* Smooth scrollbar for the table */
 .message-box table::-webkit-scrollbar {
   height: 8px;
   width: 8px;
@@ -103,13 +106,13 @@
 .message-box th,
 .message-box td {
   border: 1px solid #d1d5db;
-  padding: 0.4em 0.6em;       /* Slightly more compact cell padding */
-  white-space: nowrap;        /* Forces wide content to scroll horizontally */
+  padding: 0.4em 0.6em;
+  white-space: nowrap;
 }
 
 .message-box th {
   background-color: #ffedd5;
-  position: sticky;           /* Keeps the header visible while scrolling */
+  position: sticky;
   top: 0;
   z-index: 10;
 }
