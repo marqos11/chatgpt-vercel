@@ -25,21 +25,32 @@ const downgradeHeadersPlugin = (md: MarkdownIt) => {
     state.tokens.forEach((token) => {
       // Check if the token is a heading
       if (token.type === 'heading_open' || token.type === 'heading_close') {
-        const currentTag = token.tag;
+        const originalTag = token.tag;
 
         /* eslint-disable no-param-reassign */
-        // Map tags down to smaller sizes
-        if (currentTag === 'h1') token.tag = 'h3';
-        else if (currentTag === 'h2') token.tag = 'h4';
-        else if (currentTag === 'h3') token.tag = 'h5';
-        else if (currentTag === 'h4') token.tag = 'h6';
+        // Map tags down to smaller sizes to prevent huge defaults
+        if (originalTag === 'h1') token.tag = 'h3';
+        else if (originalTag === 'h2') token.tag = 'h4';
+        else if (originalTag === 'h3') token.tag = 'h5';
+        else if (originalTag === 'h4') token.tag = 'h6';
 
-        // If it's the opening tag, FORCE inline styles to reduce thickness/size
+        // Apply DISTINCT styles based on the ORIGINAL tag level
         if (token.type === 'heading_open') {
           const styleIndex = token.attrIndex('style');
-          // font-weight: 500 (Medium) is much thinner than default Bold (700)
-          const customStyle =
-            'font-weight: 500; font-size: 1.15em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+          
+          let customStyle = '';
+
+          // Tiered sizing logic
+          if (originalTag === 'h1') {
+             // Main Title: Slightly larger, medium weight
+             customStyle = 'font-weight: 600; font-size: 1.25em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+          } else if (originalTag === 'h2') {
+             // Section: Just a bit larger than text
+             customStyle = 'font-weight: 600; font-size: 1.1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+          } else {
+             // H3 and below: Same size as text (1em), just bold
+             customStyle = 'font-weight: 600; font-size: 1em; line-height: 1.3; margin-top: 1em; margin-bottom: 0.5em;';
+          }
 
           if (styleIndex < 0) {
             token.attrPush(['style', customStyle]);
