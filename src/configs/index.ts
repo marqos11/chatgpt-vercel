@@ -19,6 +19,8 @@ export const supportedModels = [
   'gpt-5.2-chat-latest',
   'grok-4.1-fast-reasoning',
   'grok-4.1-thinking',
+  'grok-4.1-expert',
+  'grok-4.1-fast',
   'openrouter:x-ai/grok-4.1-fast',
 ] as const;
 
